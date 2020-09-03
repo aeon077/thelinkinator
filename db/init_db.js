@@ -36,7 +36,7 @@ async function buildTables() {
       CREATE TABLE tags (
         id SERIAL PRIMARY KEY,
         name VARCHAR(255) UNIQUE NOT NULL
-      );
+      );z
   `);
 
     await client.query(`
