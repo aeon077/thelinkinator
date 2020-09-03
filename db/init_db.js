@@ -14,6 +14,8 @@ async function buildTables() {
     // drop tables in correct order
     console.log("Starting to drop tables...");
     await client.query(`
+      DROP TABLE IF EXISTS link_tags;
+      DROP TABLE IF EXISTS tags;
       DROP TABLE IF EXISTS links;
     `);
     console.log("Finished dropping tables!");
@@ -23,10 +25,25 @@ async function buildTables() {
     await client.query(`
       CREATE TABLE links (
         id SERIAL PRIMARY KEY,
-        link VARCHAR(255) UNIQUE NOT NULL,
+        url VARCHAR(255) UNIQUE NOT NULL,
         count INTEGER,
         date TIMESTAMP,
         comment TEXT
+      );
+    `);
+
+    await client.query(`
+      CREATE TABLE tags (
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(255) UNIQUE NOT NULL
+      );
+  `);
+
+    await client.query(`
+      CREATE TABLE link_tags (
+        id SERIAL PRIMARY KEY,
+        "linkId" INTEGER REFERENCES links(id),
+        "tagId" INTEGER REFERENCES tags(id)
       );
     `);
 
