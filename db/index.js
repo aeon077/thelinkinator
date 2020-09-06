@@ -1,14 +1,8 @@
-//~~ IMPORTS ~~
-//-- Client --
-const { Client } = require('pg');
-const DB_NAME = 'linkinator'
-const DB_URL = process.env.DATABASE_URL || `postgres://localhost:5432/${DB_NAME}`;
-const client = new Client(DB_URL);
-
-//~~ FUNCTIONS ~~
-
 //~~ EXPORTS ~~
+//Exports all database functions. Only need to import this to have access to database.
 module.exports = {
-  client,
-  // db methods
+  ...require('./client'),
+  ...require('./links'),
+  ...require('./tags'),
+  ...require('./link_tags')
 }
