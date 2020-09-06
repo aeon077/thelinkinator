@@ -1,7 +1,23 @@
 .jumbotron-override {
     margin-bottom: 0rem;
+    padding: 50px 0px;
+    background-color: #d7e6f4;
    };
    
 .btn-override {
        margin-left: 16px;
-   }
+       margin-right: 34px;
+   };
+
+.h1, h1 {
+    font-size: 3.5rem;
+}
+
+.p, p {
+    color: grey;
+};
+
+.container {
+    padding-right: 0px;
+    
+};
