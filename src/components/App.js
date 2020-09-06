@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 // import { NavLink } from 'react-router-dom';
-// import './index.css';
-
 
 import {
-  Header
+  Header, Searchbar
 } from './index';
 
 const App = () => {
@@ -23,6 +21,7 @@ const App = () => {
   return (
     <div className="App">
       <Header />
+      <Searchbar />
     </div>
   );
 }
