@@ -6,6 +6,7 @@ import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 import '../scss/custom.scss'
 
+
 const Searchbar = () => {
     return (
         <Navbar bg="dark" variant="dark" className="ml-auto">
@@ -26,9 +27,6 @@ const Searchbar = () => {
                 </Form.Group>
                 <Button variant="outline-info" className="btn-override">Search</Button>
             </Form>
-            <Nav className="mr-auto">
-                <Nav.Link href="#home"><i className="far fa-plus-square"></i> Add New Link </Nav.Link>
-            </Nav>
 
         </Navbar>
     )

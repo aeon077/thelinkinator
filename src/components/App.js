@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import {
   Header, Searchbar
 } from './index';
+import URLform from './URLform';
 
 const App = () => {
   // const [message, setMessage] = useState('');
@@ -22,6 +23,7 @@ const App = () => {
     <div className="App">
       <Header />
       <Searchbar />
+      <URLform />
     </div>
   );
 }
