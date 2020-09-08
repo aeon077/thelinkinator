@@ -3,4 +3,3 @@
 //~~ MIDDLEWARE ~~
 
 //~~ EXPORTS ~~
-module.exports = apiRouter;

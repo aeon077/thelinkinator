@@ -57,7 +57,8 @@ async function buildTables() {
       CREATE TABLE link_tags (
         id SERIAL PRIMARY KEY,
         "linkId" INTEGER REFERENCES links(id),
-        "tagId" INTEGER REFERENCES tags(id)
+        "tagId" INTEGER REFERENCES tags(id),
+        UNIQUE ("linkId", "tagId")
       );
     `);
 
@@ -73,7 +74,7 @@ async function populateInitialData() {
   try {
     console.log("Creating initial link...");
 
-    const initialLink = await createLink({ url: "https://Linkinator.com" });
+    const initialLink = await createLink({ url: "https://linkinator.com", comment: "This link is super good!", tags: ["#useful", "#linkinator"] });
 
     console.log("Successfully created initial link: \n", initialLink)
 
@@ -94,7 +95,7 @@ async function testDB() {
     console.log("Successfully ran getAllLinks: \n", allLinks);
 
     console.log("Testing getLinkByURL...");
-    const link = await getLinkByURL({ url: "https://Linkinator.com" });
+    const link = await getLinkByURL({ url: "https://linkinator.com" });
     console.log("Successfully ran getLinkByURL: \n", link);
 
     console.log("Successfully finished running tests of database functions!");
