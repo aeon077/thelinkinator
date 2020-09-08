@@ -1,8 +1,10 @@
-import React, { children } from 'react';
+import React from 'react';
 import Accordion from 'react-bootstrap/Accordion'
-import { useAccordionToggle } from 'react-bootstrap/AccordionToggle';
+// import { useAccordionToggle } from 'react-bootstrap/AccordionToggle';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Container from 'react-bootstrap/Container'
 
 const URLform = () => {
     return (
@@ -14,7 +16,25 @@ const URLform = () => {
       </Accordion.Toggle>
                 </Card.Header>
                 <Accordion.Collapse eventKey="0">
-                    <Card.Body>Hello! I'm the body</Card.Body>
+                    <Container>
+                        <Form>
+                            <Form.Group controlId="exampleForm.ControlInput1">
+                                <Form.Label>Name:</Form.Label>
+                                <Form.Control type="text" placeholder="New Bookmark" />
+                            </Form.Group>
+                            <Form.Group controlId="exampleForm.ControlInput1">
+                                <Form.Label>Location:</Form.Label>
+                                <Form.Control type="url" placeholder="NewURL.com" />
+                            </Form.Group>
+                            <Form.Group controlId="exampleForm.ControlTextarea1">
+                                <Form.Label>Tags:</Form.Label>
+                                <Form.Control as="textarea" rows="3" placeholder="Add tags to group your url's, and for quick searching!" />
+                            </Form.Group>
+                            <Button variant="outline-info" className="btn-override" type="submit">
+                                Submit
+                            </Button>
+                        </Form>
+                    </Container>
                 </Accordion.Collapse>
             </Card>
 
