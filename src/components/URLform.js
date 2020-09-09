@@ -8,7 +8,12 @@ import Container from 'react-bootstrap/Container';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 
-const URLform = () => {
+const URLform = (
+    Name,
+    URL,
+    Tags,
+    Submit
+) => {
     return (
         <Accordion>
             <Card>
