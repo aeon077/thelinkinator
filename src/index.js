@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import '../node_modules/font-awesome/css/font-awesome.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
+//Components
 import {
   Header,
   Results,
@@ -9,10 +11,33 @@ import {
   URLform
 } from './components/index';
 
+//API
+import {
+  fetchUrls
+} from './api'
+
 const App = () => {
+
   console.log('Rendering App')
-  const [results, setResults] = useState([]);
-  const [deck, setDeck] = useState([]);
+  // const [url, setUrl] = useState([]);
+  // fetchUrls().then(console.log);
+  // const addUrlCount = ({ id, name }) => {
+  //   const nextUrl = [...url];
+  //   const index = nextUrl.findIndex(url => url.id === id);
+
+  //   if (index > -1) {
+  //     nextUrl[index].count += 1;
+  //   } else {
+  //     nextUrl.push({
+  //       id,
+  //       name,
+  //       count: 1
+  //     });
+  //   }
+  //   setUrl(nextUrl);
+  // }
+
+
 
   // useEffect(() => {
   //   getSomething()
@@ -29,7 +54,10 @@ const App = () => {
       <Header />
       <Searchbar />
       <URLform />
-      <Results />
+      <Results
+      // url={url}
+      // addUrlCount={addUrlCount} 
+      />
     </div>
   );
 }
