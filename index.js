@@ -23,7 +23,7 @@ server.use(bodyParser.json());
 server.use(express.static(path.join(__dirname, 'build')));
 
 // here's our API
-server.use('/api', require('./routes'));
+server.use('/api', require('./routes/index'));
 
 
 

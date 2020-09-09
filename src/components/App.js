@@ -1,12 +1,11 @@
-import React from 'react';
-// import { NavLink } from 'react-router-dom';
+// import React from 'react';
+// // import { NavLink } from 'react-router-dom';
 
-import {
-  Header, Searchbar
-} from './index';
-import URLform from './URLform';
+// import {
+//   Header, Searchbar, URLform, Results
+// } from './index';
 
-const App = () => {
+// const App = () => {
   // const [message, setMessage] = useState('');
 
   // useEffect(() => {
@@ -19,13 +18,14 @@ const App = () => {
   //     });
   // });
 
-  return (
-    <div className="App">
-      <Header />
-      <Searchbar />
-      <URLform />
-    </div>
-  );
-}
+//   return (
+//     <div className="App">
+//       <Header />
+//       <Searchbar />
+//       <URLform />
+//       <Results />
+//     </div>
+//   );
+// }
 
-export default App;
+// export default App;
