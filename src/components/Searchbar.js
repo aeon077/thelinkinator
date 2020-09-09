@@ -9,7 +9,7 @@ import '../scss/custom.scss'
 const Searchbar = () => {
     return (
         <Navbar bg="dark" variant="dark" className="ml-auto">
-            <Navbar.Brand>Your journey begins here <i className="fas fa-angle-double-right"></i> </Navbar.Brand>
+            <Navbar.Brand>Pick my brain <i className="fas fa-angle-double-right"></i> </Navbar.Brand>
             <Form inline>
                 <FormControl type="text" placeholder="Search Keyword or Tag" className="mr-sm-2" width="100%" />
                 <Form.Group controlId="exampleForm.ControlSelect1">
@@ -24,7 +24,8 @@ const Searchbar = () => {
                         <option value="2">Search by URL</option>
                     </Form.Control>
                 </Form.Group>
-                <Button variant="outline-info" className="btn-override">Search</Button>
+                <Button variant="outline-info" className="btn-override">
+                    <i className="fa fa-search" aria-hidden="true"></i> Search</Button>
             </Form>
 
         </Navbar>

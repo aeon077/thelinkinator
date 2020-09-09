@@ -4,7 +4,9 @@ import Accordion from 'react-bootstrap/Accordion'
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Container from 'react-bootstrap/Container'
+import Container from 'react-bootstrap/Container';
+import InputGroup from 'react-bootstrap/InputGroup';
+import FormControl from 'react-bootstrap/FormControl';
 
 const URLform = () => {
     return (
@@ -17,23 +19,46 @@ const URLform = () => {
                 </Card.Header>
                 <Accordion.Collapse eventKey="0">
                     <Container>
+                        <br></br>
                         <Form>
                             <Form.Group controlId="exampleForm.ControlInput1">
-                                <Form.Label>Name:</Form.Label>
-                                <Form.Control type="text" placeholder="New Bookmark" />
+                                <Form.Label htmlFor="inlineFormInputGroup" srOnly>
+                                    Name
+                                </Form.Label>
+                                <InputGroup className="mb-2">
+                                    <InputGroup.Prepend>
+                                        <InputGroup.Text><i class="far fa-bookmark"></i></InputGroup.Text>
+                                    </InputGroup.Prepend>
+                                    <FormControl id="inlineFormInputGroup" placeholder="Name" />
+                                </InputGroup>
                             </Form.Group>
                             <Form.Group controlId="exampleForm.ControlInput1">
-                                <Form.Label>Location:</Form.Label>
-                                <Form.Control type="url" placeholder="NewURL.com" />
+                                <Form.Label htmlFor="inlineFormInputGroup" srOnly>
+                                    URL Address
+                                </Form.Label>
+                                <InputGroup className="mb-2">
+                                    <InputGroup.Prepend>
+                                        <InputGroup.Text><i class="fas fa-map-marker-alt"></i></InputGroup.Text>
+                                    </InputGroup.Prepend>
+                                    <FormControl id="inlineFormInputGroup" placeholder="URL Address" />
+                                </InputGroup>
                             </Form.Group>
-                            <Form.Group controlId="exampleForm.ControlTextarea1">
-                                <Form.Label>Tags:</Form.Label>
-                                <Form.Control as="textarea" rows="3" placeholder="Add tags to group your url's, and for quick searching!" />
+                            <Form.Group>
+                                <InputGroup>
+                                    <InputGroup.Prepend>
+                                        <InputGroup.Text><i class="fas fa-hashtag"></i> &nbsp; Tags</InputGroup.Text>
+                                    </InputGroup.Prepend>
+                                    <FormControl as="textarea" aria-label="With textarea" placeholder="Add tags to group your URL's or find them quickly." />
+                                </InputGroup>
                             </Form.Group>
                             <Button variant="outline-info" className="btn-override" type="submit">
                                 Submit
                             </Button>
+                            <Accordion.Toggle as={Button} variant="link" eventKey="0" className="cancel">
+                                <i class="fa fa-window-close-o" aria-hidden="true"></i> Cancel
+      </Accordion.Toggle>
                         </Form>
+                        <br></br>
                     </Container>
                 </Accordion.Collapse>
             </Card>
