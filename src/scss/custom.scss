@@ -1,7 +1,7 @@
 .jumbotron-override {
     margin-bottom: 0rem;
     padding: 25px 0px;
-    background-color: #d7e6f4;
+    background: url("/images/1589.jpg");
    };
    
 .btn-override {
@@ -37,6 +37,20 @@
     padding: 0px;
 };
 
+.form-control {
+    transition: all 1s ease-out;
+}
+
 .form-control:focus {
     border-color: #17a2b8;
+    width: 300px;
+
+}
+
+.cancel {
+    margin-left: 75%;
+}
+
+.cancel:hover {
+    color: red
 }
