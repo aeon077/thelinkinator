@@ -1,13 +1,15 @@
-// import React from 'react';
-// import axios from 'axios';
+import axios from 'axios';
 
-const BASE_URL = 'https://localhost:5000';
+const BASE_URL = '/api';
 
-// export async function fetchUrls() {
-//   try {
-//     const { data } = await axios.get(`${BASE_URL}/links`);
-//     return data.links || [];
-//   } catch (error) {
-//     throw error;
-//   }
-// }
+export async function fetchUrls() {
+
+  try {
+    const { data } = await axios.get(`${BASE_URL}/links`);
+    console.log('hello')
+    return data || [];
+  } catch (error) {
+    throw error;
+  }
+};
+

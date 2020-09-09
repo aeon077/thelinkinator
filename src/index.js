@@ -14,13 +14,19 @@ import {
 //API
 import {
   fetchUrls
-} from './api'
+} from './api/index.js';
+
+async function test() {
+  console.log('hi');
+  await fetchUrls().then(console.log);
+}
+test();
 
 const App = () => {
 
   console.log('Rendering App')
+
   // const [url, setUrl] = useState([]);
-  // fetchUrls().then(console.log);
   // const addUrlCount = ({ id, name }) => {
   //   const nextUrl = [...url];
   //   const index = nextUrl.findIndex(url => url.id === id);
@@ -36,18 +42,6 @@ const App = () => {
   //   }
   //   setUrl(nextUrl);
   // }
-
-
-
-  // useEffect(() => {
-  //   getSomething()
-  //     .then(response => {
-  //       setMessage(response.message);
-  //     })
-  //     .catch(error => {
-  //       setMessage(error.message);
-  //     });
-  // });
 
   return (
     <div className="App">
