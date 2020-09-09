@@ -1,13 +1,16 @@
 import React from 'react';
-// import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
+import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import Table from 'react-bootstrap/Table';
+import BootstrapTable from 'react-bootstrap-table-next';
 import '../scss/custom.scss';
+import axios from 'axios';
 
 
 const ResultsTable = () => {
+
     return (
         <Table striped bordered hover>
-            <thead class="thead-dark">
+            <thead className="thead-dark">
                 <tr>
                     <th>Name</th>
                     <th>URL</th>

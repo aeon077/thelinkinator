@@ -1,6 +1,5 @@
 import React from 'react';
 import Accordion from 'react-bootstrap/Accordion'
-// import { useAccordionToggle } from 'react-bootstrap/AccordionToggle';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -32,7 +31,7 @@ const URLform = (
                                 </Form.Label>
                                 <InputGroup className="mb-2">
                                     <InputGroup.Prepend>
-                                        <InputGroup.Text><i class="far fa-bookmark"></i></InputGroup.Text>
+                                        <InputGroup.Text><i className="far fa-bookmark"></i></InputGroup.Text>
                                     </InputGroup.Prepend>
                                     <FormControl id="inlineFormInputGroup" placeholder="Name" />
                                 </InputGroup>
@@ -43,7 +42,7 @@ const URLform = (
                                 </Form.Label>
                                 <InputGroup className="mb-2">
                                     <InputGroup.Prepend>
-                                        <InputGroup.Text><i class="fas fa-map-marker-alt"></i></InputGroup.Text>
+                                        <InputGroup.Text><i className="fas fa-map-marker-alt"></i></InputGroup.Text>
                                     </InputGroup.Prepend>
                                     <FormControl id="inlineFormInputGroup" placeholder="URL Address" />
                                 </InputGroup>
@@ -51,7 +50,7 @@ const URLform = (
                             <Form.Group>
                                 <InputGroup>
                                     <InputGroup.Prepend>
-                                        <InputGroup.Text><i class="fas fa-hashtag"></i> &nbsp; Tags</InputGroup.Text>
+                                        <InputGroup.Text><i className="fas fa-hashtag"></i> &nbsp; Tags</InputGroup.Text>
                                     </InputGroup.Prepend>
                                     <FormControl as="textarea" aria-label="With textarea" placeholder="Add tags to group your URL's or find them quickly." />
                                 </InputGroup>
@@ -60,7 +59,7 @@ const URLform = (
                                 Submit
                             </Button>
                             <Accordion.Toggle as={Button} variant="link" eventKey="0" className="cancel">
-                                <i class="fa fa-window-close-o" aria-hidden="true"></i> Cancel
+                                <i className="fa fa-window-close-o" aria-hidden="true"></i> Cancel
       </Accordion.Toggle>
                         </Form>
                         <br></br>
