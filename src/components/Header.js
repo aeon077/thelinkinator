@@ -1,9 +1,10 @@
 import React from 'react';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Container from 'react-bootstrap/Container';
-import '../scss/custom.scss'
+// import '../scss/custom.scss'
 
-const Header = ({ linksList: links }) => {
+const Header = ({ linksList }) => {
+    const allLinks = linksList.links;
     return (
         <Jumbotron fluid className="jumbotron-override">
             <Container>
