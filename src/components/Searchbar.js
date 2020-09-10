@@ -3,7 +3,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
-import '../scss/custom.scss'
+// import '../scss/custom.scss'
 
 const Searchbar = () => {
 

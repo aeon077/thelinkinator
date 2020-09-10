@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import '../node_modules/font-awesome/css/font-awesome.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -13,18 +13,30 @@ import {
 
 //API
 import {
-  fetchUrls
-} from './api/index.js';
+  fetchLinks
+} from './api/index';
 
 async function test() {
-  console.log('hi');
-  await fetchUrls().then(console.log);
+  await fetchLinks().then(console.log);
 }
 test();
 
 const App = () => {
 
   console.log('Rendering App')
+
+  const [linksList, setLinksList] = useState([]);
+
+  useEffect(() => {
+    fetchLinks()
+      .then(links => {
+        setLinksList(links);
+      })
+      .catch(error => {
+        console.error(error);
+      })
+  }, []);
+
 
   // const [url, setUrl] = useState([]);
   // const addUrlCount = ({ id, name }) => {
@@ -45,7 +57,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Header />
+      <Header linksList={linksList} />
       <Searchbar />
       <URLform />
       <Results
