@@ -5,8 +5,8 @@ import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 // import '../scss/custom.scss'
 
-
 const Searchbar = () => {
+
     return (
         <Navbar bg="dark" variant="dark" className="ml-auto">
             <Navbar.Brand>Pick my brain <i className="fas fa-angle-double-right"></i> </Navbar.Brand>
