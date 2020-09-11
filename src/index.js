@@ -16,11 +16,6 @@ import {
   fetchLinks
 } from './api/index';
 
-async function test() {
-  await fetchLinks().then(console.log);
-}
-test();
-
 const App = () => {
 
   console.log('Rendering App')
@@ -29,8 +24,8 @@ const App = () => {
 
   useEffect(() => {
     fetchLinks()
-      .then(links => {
-        setLinksList(links);
+      .then(result => {
+        setLinksList(result.links);
       })
       .catch(error => {
         console.error(error);
@@ -57,10 +52,11 @@ const App = () => {
 
   return (
     <div className="App">
-      <Header linksList={linksList} />
+      <Header />
       <Searchbar />
       <URLform />
       <Results
+        linksList={linksList}
       // url={url}
       // addUrlCount={addUrlCount} 
       />
