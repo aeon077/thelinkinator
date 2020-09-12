@@ -22,14 +22,17 @@ const Searchbar = ({ setLinksList }) => {
         setTags(event.target.value);
     }
 
-    async function handleSubmit(event) {
+    function handleSubmit(event) {
         event.preventDefault();
-        const links = await fetchLinks({
+        fetchLinks({
             comment,
             tags
+        }).then(({ links }) => {
+            setLinksList(links)
         })
-        setLinksList(links)
     }
+
+
     return (
         <Navbar bg="dark" variant="dark" className="ml-auto">
             <Navbar.Brand>Pick my brain <i className="fas fa-angle-double-right"></i> </Navbar.Brand>
@@ -37,16 +40,12 @@ const Searchbar = ({ setLinksList }) => {
                 <InputGroup className="mb-3-over">
                     <FormControl
                         placeholder="Keyword Search"
-                        aria-label="Username"
-                        aria-describedby="basic-addon1"
                         value={comment}
                         onChange={handleCommentChange} />
                 </InputGroup>
                 <InputGroup className="mb-3-over">
                     <FormControl
                         placeholder="Tag Search"
-                        aria-label="Username"
-                        aria-describedby="basic-addon1"
                         value={tags}
                         onChange={handleTagChange}
                     />
