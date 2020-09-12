@@ -8,51 +8,41 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import '../scss/custom.scss'
 
+import {
+    fetchLinks,
+    postNewLink
+} from "../api"
 
-const URLform = () => {
-    const initialFormState = {
-        comment: "Name",
-        url: "www.github.com",
-        tags: ["dev", "fullstack"]
-    }
-    const newFormState = {
-        comment: "",
-        url: "",
-        tags: [],
-    };
-    const [formData, setFormData] = useState(initialFormState);
-    const [newForm, setNewForm] = useState(newFormState);
+const URLform = ({ setLinksList }) => {
+    const [url, setUrl] = useState('');
+    const [comment, setComment] = useState('');
+    const [tags, setTags] = useState([]);
 
-    const dispatchFormSet = (payload) => {
-        let oldArray = formData;
-        let newArray = [...oldArray, payload];
-        setFormData(newArray);
-        setNewForm({ comment: '', url: '', tags: [''] })
-    }
-
-
-    const handleCommentChange = e => {
-        setNewForm({ ...newForm, comment: e.currentTarget.value })
+    const handleUrlChange = event => {
+        setUrl(event.target.value);
     };
 
-    const handleUrlChange = e => {
-        setNewForm({ ...newForm, url: e.currentTarget.value })
+    const handleCommentChange = event => {
+        setComment(event.target.value);
     };
 
-    const handleTagsChange = e => {
-        setNewForm({ ...newForm, tags: e.currentTarget.value })
+    const handleTagsChange = event => {
+        setTags((event.target.value).split(","));
     }
-    // const saveForm = () => {
-    //     let data = {
-    //         comment: form.comment,
-    //         url: form.url
-    //     }
 
-    // const newForm = () => {
-    //     setForm(initialFormState);
-    //     setSubmitted(false);
-    // }
+    async function handleSubmit(event) {
+        event.preventDefault();
 
+        await postNewLink({ url, comment, tags });
+        await fetchLinks()
+            .then(result => {
+                setLinksList(result.links);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
+    };
 
     return (
         <Accordion>
@@ -70,24 +60,7 @@ const URLform = () => {
                 <Accordion.Collapse eventKey="0">
                     <Container>
                         <br></br>
-                        <Form onSubmit={e => e.preventDefault()}>
-                            <Form.Group controlId="exampleForm.ControlInput1">
-                                <Form.Label htmlFor="inlineFormInputGroup linkTitle" srOnly>
-                                    Name
-                                </Form.Label>
-                                <InputGroup
-                                    name="comment"
-                                    className="mb-2"
-                                    value={newForm.comment}
-                                    onChange={handleCommentChange} >
-                                    <InputGroup.Prepend>
-                                        <InputGroup.Text><i className="far fa-bookmark"></i></InputGroup.Text>
-                                    </InputGroup.Prepend>
-                                    <FormControl
-                                        id="inlineFormInputGroup"
-                                        placeholder="Enter a bookmark name or description" />
-                                </InputGroup>
-                            </Form.Group>
+                        <Form onSubmit={handleSubmit}>
                             <Form.Group controlId="exampleForm.ControlInput1">
                                 <Form.Label
                                     htmlFor="inlineFormInputGroup"
@@ -98,7 +71,7 @@ const URLform = () => {
                                     name="url"
                                     className="mb-2"
                                     required
-                                    value={newForm.url}
+                                    value={url}
                                     onChange={handleUrlChange}>
                                     <InputGroup.Prepend>
                                         <InputGroup.Text>
@@ -110,10 +83,27 @@ const URLform = () => {
                                         placeholder="URL Address" />
                                 </InputGroup>
                             </Form.Group>
+                            <Form.Group controlId="exampleForm.ControlInput1">
+                                <Form.Label htmlFor="inlineFormInputGroup linkTitle" srOnly>
+                                    Comment
+                                </Form.Label>
+                                <InputGroup
+                                    name="comment"
+                                    className="mb-2"
+                                    value={comment}
+                                    onChange={handleCommentChange} >
+                                    <InputGroup.Prepend>
+                                        <InputGroup.Text><i className="far fa-bookmark"></i></InputGroup.Text>
+                                    </InputGroup.Prepend>
+                                    <FormControl
+                                        id="inlineFormInputGroup"
+                                        placeholder="Enter a bookmark name or description" />
+                                </InputGroup>
+                            </Form.Group>
                             <Form.Group>
                                 <InputGroup
                                     name="tags"
-                                    value={newForm.tags}
+                                    value={tags}
                                     onChange={handleTagsChange}>
                                     <InputGroup.Prepend>
                                         <InputGroup.Text>
@@ -126,7 +116,6 @@ const URLform = () => {
                                 </InputGroup>
                             </Form.Group>
                             <Button
-                                onClick={() => dispatchFormSet(newForm)}
                                 variant="outline-info"
                                 className="btn-override"
                                 type="submit">

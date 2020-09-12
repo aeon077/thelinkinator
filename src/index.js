@@ -54,11 +54,11 @@ const App = () => {
     <div className="App">
       <Header />
       <Searchbar />
-      <URLform />
+      <URLform
+        setLinksList={setLinksList}
+      />
       <Results
         linksList={linksList}
-      // url={url}
-      // addUrlCount={addUrlCount} 
       />
     </div>
   );

@@ -2,6 +2,11 @@
 const { client } = require('./client');
 
 //~~ FUNCTIONS ~~
+
+//Gets a tag by a tagid.
+async function getTagsById({ id }) {
+
+}
 //Creates the tags that are sent on a link post.
 async function createTags(tagList) {
     if (tagList.length === 0) {
