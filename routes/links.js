@@ -22,7 +22,26 @@ linksRouter.get("/", async (req, res, next) => {
             name: "SuccessfullyRetrieved",
             message: "All links were successfully retrieved!",
             links
-        })
+        });
+    } catch ({ name, message }) {
+        next({ name, message })
+    }
+})
+
+//Get specific link using a url parameter.
+linksRouter.get("/:url", async (req, res, next) => {
+    try {
+        const { url } = req.params;
+
+        url = url.toLowerCase();
+        const link = await getLinkByURL(url);
+
+        res.send({
+            status: 201,
+            name: "SuccessfullyRetrieved",
+            message: "The link was successfully retrieved!",
+            link
+        });
     } catch ({ name, message }) {
         next({ name, message })
     }
@@ -32,6 +51,10 @@ linksRouter.get("/", async (req, res, next) => {
 //Create a new link.
 linksRouter.post("/", async (req, res, next) => {
     const { url, comment, tags } = req.body;
+
+    console.log(req.body);
+
+    //find url by name to see if it exsists already
 
     //Check if url was included in request.
     if (!url) {
@@ -44,6 +67,7 @@ linksRouter.post("/", async (req, res, next) => {
         try {
             //Create link data object to send to database.
             const linkData = {};
+
             linkData.url = url.toLowerCase();
             linkData.comment = comment;
             linkData.tags = tags;
