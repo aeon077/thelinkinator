@@ -18,18 +18,16 @@ const URLform = ({ setLinksList }) => {
     const [comment, setComment] = useState('');
     const [tags, setTags] = useState([]);
 
-    const handleUrlChange = event => {
-        setUrl(event.target.value);
-    };
-
-    const handleCommentChange = event => {
-        setComment(event.target.value);
-    };
-
+    //handles onChange for url and comment
+    const onChange = (update) => (event) => {
+        event.preventDefault();
+        update(event.target.value)
+    }
+    //handles onChange for Tags
     const handleTagsChange = event => {
         setTags((event.target.value).split(","));
     }
-
+    //we need to remove async function per Travis
     async function handleSubmit(event) {
         event.preventDefault();
 
@@ -77,7 +75,7 @@ const URLform = ({ setLinksList }) => {
                                     className="mb-2"
                                     required
                                     value={url}
-                                    onChange={handleUrlChange}>
+                                    onChange={onChange(setUrl)}>
                                     <InputGroup.Prepend>
                                         <InputGroup.Text>
                                             <i className="fas fa-map-marker-alt"></i>
@@ -96,7 +94,7 @@ const URLform = ({ setLinksList }) => {
                                     name="comment"
                                     className="mb-2"
                                     value={comment}
-                                    onChange={handleCommentChange} >
+                                    onChange={onChange(setComment)} >
                                     <InputGroup.Prepend>
                                         <InputGroup.Text><i className="far fa-bookmark"></i></InputGroup.Text>
                                     </InputGroup.Prepend>
