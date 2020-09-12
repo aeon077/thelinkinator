@@ -2,7 +2,7 @@ import moment from 'moment';
 import React from 'react';
 import Table from 'react-bootstrap/Table';
 // import BootstrapTable from 'react-bootstrap-table-next';
-import cellEditFactory from 'react-bootstrap-table2-editor';
+// import cellEditFactory from 'react-bootstrap-table2-editor';
 // import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import '../scss/custom.scss'
@@ -55,7 +55,7 @@ const Results = ({ linksList }) => {
         //         cellEdit={cellEditFactory({ mode: 'click' })}
         //     />
         <Table striped bordered hover>
-            <thead className="thead-dark" celledit={cellEditFactory({ mode: 'click' })}>
+            <thead className="thead-dark">
                 <tr>
                     <th>ID</th>
                     <th>URL</th>
