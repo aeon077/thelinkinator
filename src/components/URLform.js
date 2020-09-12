@@ -41,7 +41,6 @@ const URLform = ({ setLinksList }) => {
             .catch(error => {
                 console.error(error);
             });
-
     };
 
     return (
@@ -61,7 +60,7 @@ const URLform = ({ setLinksList }) => {
                     <Container>
                         <br></br>
                         <Form onSubmit={handleSubmit}>
-                            <Form.Group controlId="exampleForm.ControlInput1">
+                            <Form.Group>
                                 <Form.Label
                                     htmlFor="inlineFormInputGroup"
                                     srOnly>
@@ -83,7 +82,7 @@ const URLform = ({ setLinksList }) => {
                                         placeholder="URL Address" />
                                 </InputGroup>
                             </Form.Group>
-                            <Form.Group controlId="exampleForm.ControlInput1">
+                            <Form.Group>
                                 <Form.Label htmlFor="inlineFormInputGroup linkTitle" srOnly>
                                     Comment
                                 </Form.Label>
