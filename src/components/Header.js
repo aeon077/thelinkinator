@@ -1,7 +1,7 @@
 import React from 'react';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Container from 'react-bootstrap/Container';
-// import '../scss/custom.scss'
+import '../scss/custom.scss'
 
 const Header = () => {
     return (

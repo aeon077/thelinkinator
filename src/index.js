@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import '../node_modules/font-awesome/css/font-awesome.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './scss/custom.scss'
+
 
 //Components
 import {
@@ -19,7 +21,7 @@ import {
 const App = () => {
 
   console.log('Rendering App')
-
+  const [results, setResults] = useState([]);
   const [linksList, setLinksList] = useState([]);
 
   useEffect(() => {
@@ -33,28 +35,13 @@ const App = () => {
   }, []);
 
 
-  // const [url, setUrl] = useState([]);
-  // const addUrlCount = ({ id, name }) => {
-  //   const nextUrl = [...url];
-  //   const index = nextUrl.findIndex(url => url.id === id);
-
-  //   if (index > -1) {
-  //     nextUrl[index].count += 1;
-  //   } else {
-  //     nextUrl.push({
-  //       id,
-  //       name,
-  //       count: 1
-  //     });
-  //   }
-  //   setUrl(nextUrl);
-  // }
-
   return (
     <div className="App">
       <Header />
-      <Searchbar />
+      <Searchbar
+        setResults={setResults} />
       <URLform
+        results={results}
         setLinksList={setLinksList}
       />
       <Results
