@@ -21,7 +21,7 @@ import {
 const App = () => {
 
   console.log('Rendering App')
-  const [results, setResults] = useState([]);
+  // const [results, setResults] = useState([]);
   const [linksList, setLinksList] = useState([]);
 
   useEffect(() => {
@@ -39,9 +39,9 @@ const App = () => {
     <div className="App">
       <Header />
       <Searchbar
-        setResults={setResults} />
+        setLinksList={setLinksList} />
       <URLform
-        results={results}
+        // results={results}
         setLinksList={setLinksList}
       />
       <Results

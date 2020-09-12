@@ -10,7 +10,7 @@ import {
     fetchLinks
 } from '../api';
 
-const Searchbar = ({ results, setResults }) => {
+const Searchbar = ({ setLinksList }) => {
     const [comment, setComment] = useState([]);
     const [tags, setTags] = useState([]);
 
@@ -28,7 +28,7 @@ const Searchbar = ({ results, setResults }) => {
             comment,
             tags
         })
-        setResults(links)
+        setLinksList(links)
     }
     return (
         <Navbar bg="dark" variant="dark" className="ml-auto">

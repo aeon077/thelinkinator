@@ -37,11 +37,16 @@ const URLform = ({ setLinksList }) => {
         await fetchLinks()
             .then(result => {
                 setLinksList(result.links);
+                console.log('here')
+                setUrl('');
+                setComment('');
+                setTags([]);
             })
             .catch(error => {
                 console.error(error);
             });
     };
+
 
     return (
         <Accordion>
@@ -58,6 +63,7 @@ const URLform = ({ setLinksList }) => {
                 </Card.Header>
                 <Accordion.Collapse eventKey="0">
                     <Container>
+
                         <br></br>
                         <Form onSubmit={handleSubmit}>
                             <Form.Group>
