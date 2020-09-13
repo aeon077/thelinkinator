@@ -14,6 +14,7 @@ import {
 } from "../api"
 
 const URLform = ({ setLinksList }) => {
+    const [validated, setValidated] = useState(false);
     const [url, setUrl] = useState('');
     const [comment, setComment] = useState('');
     const [tags, setTags] = useState([]);
@@ -28,7 +29,14 @@ const URLform = ({ setLinksList }) => {
         setTags((event.target.value).split(","));
     }
     async function handleSubmit(event) {
+        const form = event.currentTarget;
         event.preventDefault();
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        setValidated(true);
 
         await postNewLink({ url, comment, tags });
         await fetchLinks()
@@ -61,27 +69,28 @@ const URLform = ({ setLinksList }) => {
                     <Container>
 
                         <br></br>
-                        <Form onSubmit={handleSubmit}>
-                            <Form.Group>
+                        <Form noValidate validated={validated} onSubmit={handleSubmit} >
+                            <Form.Group controlId="validationCustom01">
                                 <Form.Label
-                                    htmlFor="inlineFormInputGroup"
                                     srOnly>
                                     URL Address
                                 </Form.Label>
                                 <InputGroup
-                                    name="url"
-                                    className="mb-2"
-                                    required
-                                    value={url}
-                                    onChange={onChange(setUrl)}>
+                                    className="mb-2">
                                     <InputGroup.Prepend>
                                         <InputGroup.Text>
                                             <i className="fas fa-map-marker-alt"></i>
                                         </InputGroup.Text>
                                     </InputGroup.Prepend>
                                     <FormControl
-                                        id="inlineFormInputGroup"
-                                        placeholder="URL Address" />
+                                        name="url"
+                                        placeholder="https://example.com"
+                                        type="url"
+                                        pattern="*.com"
+                                        required
+                                        value={url}
+                                        onChange={onChange(setUrl)} />
+                                    <Form.Control.Feedback type="invalid">Please enter a valid URL</Form.Control.Feedback>
                                 </InputGroup>
                             </Form.Group>
                             <Form.Group>
@@ -89,28 +98,28 @@ const URLform = ({ setLinksList }) => {
                                     Comment
                                 </Form.Label>
                                 <InputGroup
-                                    name="comment"
-                                    className="mb-2"
-                                    value={comment}
-                                    onChange={onChange(setComment)} >
+                                    className="mb-2">
                                     <InputGroup.Prepend>
                                         <InputGroup.Text><i className="far fa-bookmark"></i></InputGroup.Text>
                                     </InputGroup.Prepend>
                                     <FormControl
+                                        name="comment"
+                                        value={comment}
+                                        onChange={onChange(setComment)}
                                         id="inlineFormInputGroup"
                                         placeholder="Enter a bookmark name or description" />
                                 </InputGroup>
                             </Form.Group>
                             <Form.Group>
-                                <InputGroup
-                                    name="tags"
-                                    value={tags}
-                                    onChange={handleTagsChange}>
+                                <InputGroup>
                                     <InputGroup.Prepend>
                                         <InputGroup.Text>
                                             <i className="fas fa-hashtag"></i> &nbsp; Tags</InputGroup.Text>
                                     </InputGroup.Prepend>
                                     <FormControl
+                                        name="tags"
+                                        value={tags}
+                                        onChange={handleTagsChange}
                                         as="textarea"
                                         aria-label="With textarea"
                                         placeholder="Add tags to group your URL's or find them quickly." />
