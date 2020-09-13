@@ -86,7 +86,6 @@ const URLform = ({ setLinksList }) => {
                                         name="url"
                                         placeholder="https://example.com"
                                         type="url"
-                                        pattern="*.com"
                                         required
                                         value={url}
                                         onChange={onChange(setUrl)} />
