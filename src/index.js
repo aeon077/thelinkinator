@@ -28,11 +28,28 @@ const App = () => {
     fetchLinks()
       .then(result => {
         setLinksList(result.links);
+        console.log("links result", result.links)
       })
       .catch(error => {
         console.error(error);
       })
   }, []);
+
+  // const addCount = ({ id, url }) => {
+  //   const nextLinksList = [...linksList]; // make a duplicate first
+  //   const index = nextLinksList.findIndex(linksList => linksList.id === id);
+  //   if (index > -1) {
+  //     nextLinksList[index].clicks += 1;
+  //   } else {
+  //     nextLinksList.push({
+  //       id,
+  //       url,
+  //       clicks: 1
+  //     });
+  //   }
+
+  //   setLinksList(nextLinksList);
+  // }
 
 
   return (
@@ -41,7 +58,6 @@ const App = () => {
       <Searchbar
         setLinksList={setLinksList} />
       <URLform
-        // results={results}
         setLinksList={setLinksList}
       />
       <Results

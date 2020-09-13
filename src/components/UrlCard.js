@@ -20,14 +20,12 @@ const UrlModal = ({ setLinksList }) => {
     const [comment, setComment] = useState('');
     const [tags, setTags] = useState([]);
 
-    const handleUrlChange = event => {
-        setUrl(event.target.value);
-    };
-
-    const handleCommentChange = event => {
-        setComment(event.target.value);
-    };
-
+    //handles onChange for url and comment
+    const onChange = (update) => (event) => {
+        event.preventDefault();
+        update(event.target.value)
+    }
+    //handles onChange for Tags
     const handleTagsChange = event => {
         setTags((event.target.value).split(","));
     }
@@ -53,7 +51,7 @@ const UrlModal = ({ setLinksList }) => {
         <>
             <Button variant="primary" onClick={handleShow}>
                 Edit URL
-        </Button>
+            </Button>
 
             <Modal show={show} onHide={handleClose}
                 {...setLinksList}
@@ -77,7 +75,7 @@ const UrlModal = ({ setLinksList }) => {
                                 className="mb-2"
                                 required
                                 value={url}
-                                onChange={handleUrlChange}>
+                                onChange={onChange(setUrl)}>
                                 <InputGroup.Prepend>
                                     <InputGroup.Text><i className="fas fa-map-marker-alt"></i></InputGroup.Text>
                                 </InputGroup.Prepend>
@@ -92,7 +90,7 @@ const UrlModal = ({ setLinksList }) => {
                                 name="comment"
                                 className="mb-2"
                                 value={comment}
-                                onChange={handleCommentChange}>
+                                onChange={onChange(setComment)}>
                                 <InputGroup.Prepend>
                                     <InputGroup.Text><i className="far fa-bookmark"></i></InputGroup.Text>
                                 </InputGroup.Prepend>
