@@ -90,7 +90,6 @@ const URLform = ({ setLinksList }) => {
                                         required
                                         value={url}
                                         onChange={onChange(setUrl)} />
-                                    <Form.Control.Feedback type="invalid">Please enter a valid URL</Form.Control.Feedback>
                                 </InputGroup>
                             </Form.Group>
                             <Form.Group>

@@ -11,6 +11,7 @@ import '../scss/custom.scss'
 //     postNewLink
 // } from "../api"
 
+//intend on creating link in last column of table to click and deploy this modal. 
 const UrlModal = ({ setLinksList }) => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
