@@ -1,7 +1,6 @@
 import moment from 'moment';
-import React, { useState } from 'react';
+import React from 'react';
 import Table from 'react-bootstrap/Table';
-import { updateLink } from '../api';
 // import BootstrapTable from 'react-bootstrap-table-next';
 // import cellEditFactory from 'react-bootstrap-table2-editor';
 // import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
@@ -13,14 +12,10 @@ import '../scss/custom.scss'
 
 
 const Results = ({ linksList }) => {
-    const [clickCount, setClickCount] = useState(0);
-    const [selectedId, setSelectedId] = useState(0);
+    // const [clickCount, setClickCount] = useState(0);
+    // const [selectedId, setSelectedId] = useState(0);
 
-    async function handleClickCount(event) {
-        console.log(event);
-        // setClickCount();
-        // await updateLink();
-    }
+
     // const headerSortingStyle = { backgroundColor: '#c8e6c9' };
 
     // const columns = [{
@@ -89,12 +84,11 @@ const Results = ({ linksList }) => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 id={id}
-                                count={count}
-                                onClick={handleClickCount}>
+                                count={count}>
                                 {url}
                             </a>
                         </td>
-                        <td value={clickCount}>
+                        <td>
                             {count}
                         </td>
                         <td>{moment(date).format("dddd, MMMM Do YYYY")}</td>

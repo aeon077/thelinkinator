@@ -14,7 +14,6 @@ import {
 } from "../api"
 
 const URLform = ({ setLinksList }) => {
-    const [validated, setValidated] = useState(false);
     const [url, setUrl] = useState('');
     const [comment, setComment] = useState('');
     const [tags, setTags] = useState([]);
@@ -28,15 +27,9 @@ const URLform = ({ setLinksList }) => {
     const handleTagsChange = event => {
         setTags((event.target.value).split(","));
     }
-    async function handleSubmit(event) {
-        const form = event.currentTarget;
-        event.preventDefault();
-        if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
 
-        setValidated(true);
+    async function handleSubmit(event) {
+        event.preventDefault();
 
         await postNewLink({ url, comment, tags });
         await fetchLinks()
@@ -48,9 +41,8 @@ const URLform = ({ setLinksList }) => {
             })
             .catch(error => {
                 console.error(error);
-            });
-    };
-
+            })
+    }
 
     return (
         <Accordion>
@@ -69,8 +61,8 @@ const URLform = ({ setLinksList }) => {
                     <Container>
 
                         <br></br>
-                        <Form noValidate validated={validated} onSubmit={handleSubmit} >
-                            <Form.Group controlId="validationCustom01">
+                        <Form onSubmit={handleSubmit} >
+                            <Form.Group >
                                 <Form.Label
                                     srOnly>
                                     URL Address
@@ -86,7 +78,6 @@ const URLform = ({ setLinksList }) => {
                                         name="url"
                                         placeholder="https://example.com"
                                         type="url"
-                                        required
                                         value={url}
                                         onChange={onChange(setUrl)} />
                                 </InputGroup>
