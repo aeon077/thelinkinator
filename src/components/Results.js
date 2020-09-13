@@ -1,6 +1,7 @@
 import moment from 'moment';
-import React from 'react';
+import React, { useState } from 'react';
 import Table from 'react-bootstrap/Table';
+import { updateLink } from '../api';
 // import BootstrapTable from 'react-bootstrap-table-next';
 // import cellEditFactory from 'react-bootstrap-table2-editor';
 // import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
@@ -12,6 +13,14 @@ import '../scss/custom.scss'
 
 
 const Results = ({ linksList }) => {
+    const [clickCount, setClickCount] = useState(0);
+    const [selectedId, setSelectedId] = useState(0);
+
+    async function handleClickCount(event) {
+        console.log(event);
+        // setClickCount();
+        // await updateLink();
+    }
     // const headerSortingStyle = { backgroundColor: '#c8e6c9' };
 
     // const columns = [{
@@ -71,20 +80,27 @@ const Results = ({ linksList }) => {
                 </tr>
             </thead>
             <tbody>
-                {linksList.map(({ id, url, clicks, date, comment, tags }) => (
+                {linksList.map(({ id, url, count, date, comment, tags }) => (
                     <tr key={id}>
                         <td>{id}</td>
                         <td>
-                            <a href={url} target="_blank" rel="noopener noreferrer">{url}</a>
+                            <a
+                                href={url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                id={id}
+                                count={count}
+                                onClick={handleClickCount}>
+                                {url}
+                            </a>
                         </td>
-                        <td>{clicks == null
-                            ? 0
-                            : clicks}
+                        <td value={clickCount}>
+                            {count}
                         </td>
                         <td>{moment(date).format("dddd, MMMM Do YYYY")}</td>
                         <td>{comment}</td>
                         <td>{tags.map(({ id, name }) => (
-                            <p key={id}>{name}</p>
+                            <p key={id} data={id}>{name}</p>
                         ))}
                         </td>
                     </tr>
@@ -95,5 +111,4 @@ const Results = ({ linksList }) => {
         // </>
     )
 }
-
 export default Results;
