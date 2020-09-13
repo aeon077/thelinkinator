@@ -27,7 +27,6 @@ const URLform = ({ setLinksList }) => {
     const handleTagsChange = event => {
         setTags((event.target.value).split(","));
     }
-    //we need to remove async function per Travis
     async function handleSubmit(event) {
         event.preventDefault();
 
@@ -35,7 +34,6 @@ const URLform = ({ setLinksList }) => {
         await fetchLinks()
             .then(result => {
                 setLinksList(result.links);
-                console.log('here')
                 setUrl('');
                 setComment('');
                 setTags([]);
