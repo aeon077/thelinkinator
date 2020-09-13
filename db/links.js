@@ -28,6 +28,25 @@ async function getAllLinks() {
 //Gets a specific link given a url.
 async function getLinkByURL({ url }) {
     try {
+        console.log("URL :", url);
+        const { rows: [link] } = await client.query(`
+            SELECT id
+            FROM links
+            WHERE url=$1;
+        `, [url]);
+
+        console.log(link);
+
+        const retrievedLink = await getLinkById(link.id);
+
+        return retrievedLink;
+    } catch (error) {
+        throw error;
+    }
+}
+
+async function getLinkByID({ url }) {
+    try {
         const { rows: [{ id }] } = await client.query(`
             SELECT id
             FROM links
@@ -45,6 +64,7 @@ async function getLinkByURL({ url }) {
 //Create a new link.
 async function createLink({ url, comment, tags = [] }) {
     try {
+
         const { rows: [link] } = await client.query(`
             INSERT INTO links(url, comment)
             VALUES ($1, $2)
@@ -52,9 +72,12 @@ async function createLink({ url, comment, tags = [] }) {
             RETURNING *;
         `, [url, comment]);
 
+
         const tagList = await createTags(tags);
 
-        await addTagsToLink(link.id, tagList);
+        if (tagList) {
+            await addTagsToLink(link.id, tagList);
+        }
 
         newLink = await getLinkById(link.id);
 
@@ -94,9 +117,38 @@ async function getLinkById(linkId) {
         throw error;
     }
 }
+
+//Update link with the passed parameters. Used for editing links.
+async function updateLink({ id, fields = {} }) {
+    try {
+        if (fields.tags) {
+            const newTags = fields.tags;
+            delete fields.tags;
+
+            const tagsList = await createTags(newTags);
+            await addTagsToLink(id, tagsList);
+        }
+
+        const setString = Object.keys(fields).map(
+            (key, index) => `"${key}"=$${index + 1}`
+        ).join(', ');
+
+        const { rows } = await client.query(`
+        UPDATE links
+        SET ${setString}
+        WHERE id=${id}
+        RETURNING *;
+        `, Object.values(fields));
+
+        return rows;
+    } catch (error) {
+        throw error;
+    }
+}
 //~~ EXPORTS ~~
 module.exports = {
     getAllLinks,
     getLinkByURL,
-    createLink
+    createLink,
+    updateLink
 }

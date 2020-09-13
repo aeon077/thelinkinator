@@ -6,6 +6,8 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const path = require('path');
 
+const apiRouter = require('./routes/index');
+
 // bring in the DB connection
 const PORT = process.env.PORT || 5000;
 const { client } = require('./db');
@@ -23,13 +25,17 @@ server.use(bodyParser.json());
 server.use(express.static(path.join(__dirname, 'build')));
 
 // here's our API
-server.use('/api', require('./routes/index'));
+server.use('/api', apiRouter);
 
 
 
 // by default serve up the react app if we don't recognize the route
 server.use((req, res, next) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'))
+});
+
+apiRouter.use((error, req, res, next) => {
+  res.send(error);
 });
 
 // connect to the server

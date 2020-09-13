@@ -5,7 +5,8 @@ const { client } = require('./client');
 const {
   getAllLinks,
   getLinkByURL,
-  createLink
+  createLink,
+  updateLink
 } = require('./index');
 
 //~~ FUNCTIONS ~~
@@ -97,6 +98,15 @@ async function testDB() {
     console.log("Testing getLinkByURL...");
     const link = await getLinkByURL({ url: "https://linkinator.com" });
     console.log("Successfully ran getLinkByURL: \n", link);
+
+
+    console.log("Testing updateLink...");
+    const updatedLink = await updateLink({ id: 1, fields: { count: 5, comment: "This is an update comment", tags: ["yes", "no", "update"] } });
+    console.log("Successfully ran updateLink: \n", updatedLink);
+
+    console.log("Testing getAllLinks after update...");
+    const allLinksUpdated = await getAllLinks();
+    console.log("Successfully ran getAllLinks after update: \n", allLinksUpdated);
 
     console.log("Successfully finished running tests of database functions!");
   } catch (error) {
