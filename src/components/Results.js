@@ -10,65 +10,17 @@ import '../scss/custom.scss'
 
 // import axios from 'axios';
 
+const Results = ({ linksList, addClicks, clicks }) => {
 
-const Results = ({ linksList }) => {
-    // const [clickCount, setClickCount] = useState(0);
-    // const [selectedId, setSelectedId] = useState(0);
-
-
-    // const headerSortingStyle = { backgroundColor: '#c8e6c9' };
-
-    // const columns = [{
-    //     dataField: 'url',
-    //     text: 'URL',
-    //     sort: true,
-    //     headerSortingStyle,
-    //     filter: textFilter({ placeholder: 'Search URL...' })
-    // }, {
-    //     dataField: 'clicks',
-    //     text: 'Clicks',
-    //     sort: true,
-    //     headerSortingStyle
-    // }, {
-    //     dataField: 'date',
-    //     text: 'Date Created',
-    //     type: 'date',
-    //     sort: true,
-    //     headerSortingStyle
-    // }, {
-    //     dataField: 'comment',
-    //     text: 'Comments',
-    //     sort: true,
-    //     headerSortingStyle,
-    //     filter: textFilter({ placeholder: 'Search Comments...' })
-    // }, {
-    //     dataField: '[tags]',
-    //     text: 'Tags',
-    //     // formatter: (cell) => {
-    //     //     return { cell.map(label => <li>{label}</li>) }
-    //     // },
-    //     sort: true,
-    //     headerSortingStyle,
-    //     filter: textFilter({ placeholder: 'Search Tags...' })
-    // }];
 
     return (
-        // <>
-        //     <BootstrapTable
-        //         keyField="id"
-        //         data={linksList}
-        //         columns={columns}
-        //         filter={filterFactory()}
-        //         filterPosition="top"
-        //         cellEdit={cellEditFactory({ mode: 'click' })}
-        //         pagination={paginationFactory({ sizePerPage: 15 })}
-        //     />
+
         <Table striped bordered hover>
             <thead className="thead-dark">
                 <tr>
                     <th>ID</th>
-                    <th>URL</th>
                     <th>Clicks</th>
+                    <th>URL</th>
                     <th>Date Created</th>
                     <th>Comments</th>
                     <th>Tags</th>
@@ -79,18 +31,19 @@ const Results = ({ linksList }) => {
                     <tr key={id}>
                         <td>{id}</td>
                         <td>
+                            <span>{clicks}</span>
+                        </td>
+                        <td>
                             <a
+                                onClick={addClicks}
                                 href={url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                id={id}
-                                count={count}>
+                                id={id}>
                                 {url}
                             </a>
                         </td>
-                        <td>
-                            {count}
-                        </td>
+
                         <td>{moment(date).format("dddd, MMMM Do YYYY")}</td>
                         <td>{comment}</td>
                         <td>{tags.map(({ id, name }) => (
@@ -102,7 +55,6 @@ const Results = ({ linksList }) => {
             </tbody>
 
         </Table>
-        // </>
     )
 }
 export default Results;

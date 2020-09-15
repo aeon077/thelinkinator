@@ -23,6 +23,11 @@ const App = () => {
   console.log('Rendering App')
   // const [results, setResults] = useState([]);
   const [linksList, setLinksList] = useState([]);
+  const [clicks, setClicks] = useState(0)
+
+  const addClicks = () => {
+    setClicks(nextClicks => nextClicks + 1)
+  }
 
   useEffect(() => {
     fetchLinks()
@@ -61,6 +66,8 @@ const App = () => {
         setLinksList={setLinksList}
       />
       <Results
+        clicks={clicks}
+        addClicks={addClicks}
         linksList={linksList}
       />
     </div>
